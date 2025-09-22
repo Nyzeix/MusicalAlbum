@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicalAlbum.Views.ArtistsPage"
+             Title="ArtistsPage">
+
+    <VerticalStackLayout Padding="30" Spacing="20">
+        <Label 
+            Text="Liste d'artistes" 
+            FontSize="24" 
+            HorizontalOptions="Center" />
+
+        <Entry x:Name="searchEntry"
+               Placeholder="Rechercher un artiste..."
+               TextChanged="OnSearchTextChanged"/>
+
+        <HorizontalStackLayout Spacing="10">
+            <Picker x:Name="musicGenre"
+                Title="Genre to filter">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>All</x:String>
+                        <x:String>Rock</x:String>
+                        <x:String>Pop</x:String>
+                        <x:String>Jazz</x:String>
+                        <x:String>Classical</x:String>
+                        <x:String>Hip-Hop</x:String>
+                        <x:String>Country</x:String>
+                        <x:String>Electronic</x:String>
+                        <x:String>Reggae</x:String>
+                        <x:String>Blues</x:String>
+                        <x:String>Metal</x:String>
+                        <x:String>Folk</x:String>
+                        <x:String>Punk</x:String>
+                        <x:String>Soul</x:String>
+                        <x:String>RB</x:String>
+                        <x:String>Indie</x:String>
+                        <x:String>Alternative</x:String>
+                        <x:String>Disco</x:String>
+                        <x:String>Funk</x:String>
+                        <x:String>Ska</x:String>
+                    
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <Picker x:Name="artistYear"
+                    Title="Year"
+                    ItemsSource="{Binding yearList}">
+            </Picker>
+        </HorizontalStackLayout>
+
+        
+        <CollectionView x:Name="tasksCollectionView"
+                        SelectionMode="Single"
+                        SelectionChanged="OnArtistSelected">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border 
+                        Stroke="GhostWhite" 
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 8"
+                        Padding="10">
+
+                        <HorizontalStackLayout Spacing="10">
+                            <Image Source="{Binding Photo}"
+                               WidthRequest="60"
+                               HeightRequest="60"
+                               Aspect="AspectFill"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               Margin="4"/>
+                            <VerticalStackLayout Margin="10">
+                                <Label 
+                                    Text="{Binding Name}" 
+                                    Grid.Column="0"
+                                    FontSize="32" />
+                            </VerticalStackLayout>
+
+                        </HorizontalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

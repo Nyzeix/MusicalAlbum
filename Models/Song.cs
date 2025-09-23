@@ -7,7 +7,7 @@ using System.Xml;
 
 namespace MusicalAlbum.Models
 {
-    internal class Song
+    public class Song
     {
         public required UniqueId Id { get; set; }
         public required string Title { get; set; }

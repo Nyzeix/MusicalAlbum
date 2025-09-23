@@ -10,5 +10,11 @@ public partial class ArtistDetailPage : ContentPage
     {
         BindingContext = artist;
         InitializeComponent();
+
+        var ArtistName = artist.Name;
+
+        // Get albums for the artist and bind to CollectionView
+
+        // 
     }
 }

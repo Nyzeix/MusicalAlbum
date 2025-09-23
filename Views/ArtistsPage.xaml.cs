@@ -10,14 +10,11 @@ public partial class ArtistsPage : ContentPage
 	{
 		InitializeComponent();
 
-		var yearList = new List<string>();
+		var YearList = new List<string>();
         //this.BindingContext = new ViewModels.ArtistsViewModel();
-        for (int i = 1950; i>=DateTime.Today.Year ; i++)
-		{
-			yearList.Add(i.ToString());
-		}
+        for (int i = 1950; i<=DateTime.Today.Year ; i++) YearList.Add(i.ToString());
 
-        //artistYear.ItemsSource = yearList;
+        artistYear.ItemsSource = YearList;
 
         // Get from viewModel all artists, bind to CollectionView
         /*Example

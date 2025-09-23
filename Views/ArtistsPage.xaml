@@ -45,12 +45,12 @@
             </Picker>
             <Picker x:Name="artistYear"
                     Title="Year"
-                    ItemsSource="{Binding yearList}">
+                    ItemsSource="{Binding YearList}">
             </Picker>
         </HorizontalStackLayout>
 
         
-        <CollectionView x:Name="tasksCollectionView"
+        <CollectionView x:Name="artistsCollectionView"
                         SelectionMode="Single"
                         SelectionChanged="OnArtistSelected">
             <CollectionView.ItemTemplate>
@@ -71,8 +71,7 @@
                                Margin="4"/>
                             <VerticalStackLayout Margin="10">
                                 <Label 
-                                    Text="{Binding Name}" 
-                                    Grid.Column="0"
+                                    Text="{Binding Name}"
                                     FontSize="32" />
                             </VerticalStackLayout>
 

@@ -1,42 +1,114 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MusicalAlbum.ViewModel"
+             xmlns:models="clr-namespace:MusicalAlbum.Models"
              x:Class="MusicalAlbum.Views.ArtistDetailPage"
-             Title="ArtistDetailPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="{Binding ArtistName}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        
-        
-        <CollectionView x:Name="albumsCollectionView">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Border 
-                        Stroke="GhostWhite" 
-                        StrokeThickness="1"
-                        StrokeShape="RoundRectangle 8"
-                        Padding="10">
-                        <HorizontalStackLayout Spacing="10">
-                            <Image Source="{Binding AlbumPicture}"
-                               WidthRequest="60"
-                               HeightRequest="60"
+             Title="Détails de l'artiste">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- Carte artiste -->
+            <Border Stroke="LightGray"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 16"
+                    BackgroundColor="White"
+                    Padding="20"
+                    Margin="10">
+
+                <VerticalStackLayout Spacing="15">
+
+                    <!-- Info Artiste -->
+                    <HorizontalStackLayout Spacing="15">
+                        <Image Source="{Binding Artist.Photo}"
+                               WidthRequest="150"
+                               HeightRequest="150"
                                Aspect="AspectFill"
                                VerticalOptions="Center"
-                               HorizontalOptions="Center"
+                               HorizontalOptions="Start"
                                Margin="4"/>
-                            <VerticalStackLayout Margin="10">
-                                <Label 
-                                    Text="{Binding AlbumName}"
-                                    FontSize="32"
-                                    VerticalOptions="Center"
-                                    HorizontalOptions="Start"/>
-                            </VerticalStackLayout>
-                        </HorizontalStackLayout>
-                    </Border>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </VerticalStackLayout>
+                        <VerticalStackLayout VerticalOptions="Center">
+                            <Label Text="{Binding Artist.Name}"
+                                   FontSize="28"
+                                   FontAttributes="Bold"
+                                   TextColor="Black"/>
+                            <Label Text="{Binding Artist.Genre}"
+                                   FontSize="18"
+                                   TextColor="DimGray"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+
+                    <!-- Séparateur -->
+                    <BoxView HeightRequest="1"
+                             Color="LightGray"
+                             HorizontalOptions="Fill"
+                             Margin="0,10"/>
+
+                    <!-- Bio -->
+                    <Label Text="{Binding Artist.Bio}"
+                           FontSize="16"
+                           LineBreakMode="WordWrap"
+                           TextColor="Black"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Séparateur -->
+            <BoxView HeightRequest="2"
+                Color="White"
+                HorizontalOptions="Fill"
+                Margin="0,10"/>
+            <!-- Section Albums -->
+            <Label Text="Albums"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   Margin="10,0,0,10" />
+
+            <CollectionView ItemsSource="{Binding Artist.Albums}"
+                            SelectionMode="Single"
+                            SelectionChanged="OnAlbumSelected">
+
+                <!-- Grille de 3 -->
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     Span="3"
+                                     VerticalItemSpacing="12"
+                                     HorizontalItemSpacing="12"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Album">
+                        <Border Stroke="LightGray"
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 12"
+                                BackgroundColor="White"
+                                Padding="4"
+                                Margin="4">
+                            <HorizontalStackLayout Spacing="6">
+                                <Image Source="{Binding Cover}"
+                                       Aspect="AspectFill"
+                                       HeightRequest="60"
+                                       WidthRequest="60"
+                                       HorizontalOptions="Center"/>
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Title}"
+                                           TextColor="Black"
+                                           FontSize="14"
+                                           FontAttributes="Bold"
+                                           LineBreakMode="TailTruncation"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="Start"/>
+                                    <Label Text="{Binding Year}"
+                                           FontSize="12"
+                                           TextColor="DimGray"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="End"/>
+                                </VerticalStackLayout>
+                            </HorizontalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

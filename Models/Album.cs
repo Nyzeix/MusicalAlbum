@@ -12,7 +12,7 @@ namespace MusicalAlbum.Models
         public required int Id { get; set; }
         public required string Title { get; set; }
         public required List<Song> Songs { get; set; }
-        public required string Cover { get; set; } // URL or file path to the album cover image
+        public required ImageSource Cover { get; set; } // URL or file path to the album cover image
         public required int Year { get; set; }
         public required string Genre { get; set; }
     }

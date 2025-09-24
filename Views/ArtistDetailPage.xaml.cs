@@ -1,20 +1,22 @@
 using MusicalAlbum.Models;
+using MusicalAlbum.ViewModel;
 
 namespace MusicalAlbum.Views;
 
 public partial class ArtistDetailPage : ContentPage
 {
-	
-
-    internal ArtistDetailPage(Artist artist)
+    public ArtistDetailPage(Artist artist)
     {
-        BindingContext = artist;
         InitializeComponent();
+        BindingContext = new ArtistDetailViewModel(artist);
+    }
 
-        var ArtistName = artist.Name;
-
-        // Get albums for the artist and bind to CollectionView
-
-        // 
+    private void OnAlbumSelected(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.CurrentSelection.FirstOrDefault() is Album selectedAlbum)
+        {
+            // Navigation vers la page de détail album
+            Navigation.PushAsync(new AlbumDetailPage(selectedAlbum));
+        }
     }
 }

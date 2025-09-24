@@ -7,7 +7,8 @@
              x:DataType="vm:ArtistViewModel"
              Title="Album Musical">
 
-    <VerticalStackLayout Padding="30" Spacing="20">
+    <VerticalStackLayout Padding="30" Spacing="20"
+                         BackgroundColor="Black">
         <Label 
             Text="Liste d'artistes" 
             FontSize="24" 
@@ -40,28 +41,40 @@
             
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Artist">
-                    <Border 
-                        Stroke="GhostWhite" 
+                    <Border
+                        Stroke="LightSlateGrey"
                         StrokeThickness="1"
-                        StrokeShape="RoundRectangle 8"
-                        Padding="10">
-                        <HorizontalStackLayout Spacing="10">
-                            <Image Source="{Binding Photo}"
-                               WidthRequest="60"
-                               HeightRequest="60"
-                               Aspect="AspectFill"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Center"
-                               Margin="4"/>
-                            <VerticalStackLayout Margin="10">
-                                <Label 
-                                    Text="{Binding Name}"
-                                    FontSize="20" />
-                                <Label
-                                    Text="{Binding Genre}"
-                                    FontSize="14"/>
-                            </VerticalStackLayout>
+                        StrokeShape="RoundRectangle 12"
+                        BackgroundColor="LightGray"
+                        Padding="12"
+                        Margin="8">
+                            <!-- Ombre portée -->
+                            <Border.Shadow>
+                                <Shadow Brush="Black"
+                                    Offset="5,5"
+                                    Radius="8"
+                                    Opacity="0.25"/>
+                            </Border.Shadow>
 
+                            <!-- Contenu de la carte -->
+                            <HorizontalStackLayout Spacing="12">
+                                <Image Source="{Binding Photo}"
+                                    WidthRequest="70"
+                                    HeightRequest="70"
+                                    Aspect="AspectFill"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Start"
+                                    Margin="4"/>
+
+                            <VerticalStackLayout VerticalOptions="Center">
+                                <Label Text="{Binding Name}"
+                                        FontSize="20"
+                                        FontAttributes="Bold"
+                                        TextColor="Black"/>
+                                <Label Text="{Binding Genre}"
+                                        FontSize="14"
+                                        TextColor="DimGray"/>
+                            </VerticalStackLayout>
                         </HorizontalStackLayout>
                     </Border>
                 </DataTemplate>

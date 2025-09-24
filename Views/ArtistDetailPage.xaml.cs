@@ -5,9 +5,11 @@ namespace MusicalAlbum.Views;
 
 public partial class ArtistDetailPage : ContentPage
 {
+    private Artist Artist;
     public ArtistDetailPage(Artist artist)
     {
         InitializeComponent();
+        Artist = artist;
         BindingContext = new ArtistDetailViewModel(artist);
     }
 
@@ -16,7 +18,7 @@ public partial class ArtistDetailPage : ContentPage
         if (e.CurrentSelection.FirstOrDefault() is Album selectedAlbum)
         {
             // Navigation vers la page de détail album
-            Navigation.PushAsync(new AlbumDetailPage(selectedAlbum));
+            Navigation.PushAsync(new AlbumDetailPage(selectedAlbum, Artist));
         }
     }
 }

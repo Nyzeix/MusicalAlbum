@@ -58,6 +58,7 @@
                 Color="White"
                 HorizontalOptions="Fill"
                 Margin="0,10"/>
+            
             <!-- Section Albums -->
             <Label Text="Albums"
                    FontSize="22"
@@ -68,10 +69,10 @@
                             SelectionMode="Single"
                             SelectionChanged="OnAlbumSelected">
 
-                <!-- Grille de 3 -->
+                <!-- Grille -->
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"
-                                     Span="3"
+                                     Span="4"
                                      VerticalItemSpacing="12"
                                      HorizontalItemSpacing="12"/>
                 </CollectionView.ItemsLayout>
@@ -84,27 +85,24 @@
                                 BackgroundColor="White"
                                 Padding="4"
                                 Margin="4">
-                            <HorizontalStackLayout Spacing="6">
+                            <VerticalStackLayout Spacing="6">
                                 <Image Source="{Binding Cover}"
-                                       Aspect="AspectFill"
-                                       HeightRequest="60"
-                                       WidthRequest="60"
-                                       HorizontalOptions="Center"/>
-                                <VerticalStackLayout>
-                                    <Label Text="{Binding Title}"
-                                           TextColor="Black"
-                                           FontSize="14"
-                                           FontAttributes="Bold"
-                                           LineBreakMode="TailTruncation"
-                                           HorizontalOptions="Start"
-                                           VerticalOptions="Start"/>
-                                    <Label Text="{Binding Year}"
-                                           FontSize="12"
-                                           TextColor="DimGray"
-                                           HorizontalOptions="Start"
-                                           VerticalOptions="End"/>
-                                </VerticalStackLayout>
-                            </HorizontalStackLayout>
+                                    Aspect="AspectFit"
+                                    HeightRequest="50"
+                                    HorizontalOptions="Center"/>
+                                <Label Text="{Binding Title}"
+                                    TextColor="Black"
+                                    FontSize="14"
+                                    FontAttributes="Bold"
+                                    LineBreakMode="TailTruncation"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Start"/>
+                                <Label Text="{Binding Year}"
+                                    FontSize="12"
+                                    TextColor="DimGray"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="End"/>
+                            </VerticalStackLayout>
                         </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

@@ -7,8 +7,7 @@
              x:DataType="vm:ArtistViewModel"
              Title="Album Musical">
 
-    <VerticalStackLayout Padding="30" Spacing="20"
-                         BackgroundColor="Black">
+    <VerticalStackLayout Padding="30" Spacing="20">
         <Label 
             Text="Liste d'artistes" 
             FontSize="24" 
@@ -22,12 +21,16 @@
             <Picker x:Name="musicGenre"
                     Title="Genre"
                     ItemsSource="{Binding GenreList}"
-                    SelectedItem="{Binding SelectedGenre}">
+                    SelectedItem="{Binding SelectedGenre}"
+                    BackgroundColor="LightGray"
+                    TextColor="Black">
             </Picker>
             <Picker x:Name="artistYear"
                     Title="Year"
                     ItemsSource="{Binding YearList}"
-                    SelectedItem="{Binding SelectedYear}">
+                    SelectedItem="{Binding SelectedYear}"
+                    BackgroundColor="LightGray"
+                    TextColor="Black">
             </Picker>
         </HorizontalStackLayout>
         <CollectionView x:Name="artistsCollectionView"

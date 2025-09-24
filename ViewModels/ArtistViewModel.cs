@@ -78,8 +78,8 @@ namespace MusicalAlbum.ViewModel
             List<Song> songs = new List<Song>
             {
                 new Song { Id = 1, Title = "Song 1", Link = "youtube_link", Duration = 183, Genre = "Pop", TrackNumber = 1 },
-                new Song { Id = 2, Title = "Song 2", Link = "youtube_link", Duration = 183, Genre = "Pop", TrackNumber = 2 },
-                new Song { Id = 3, Title = "Song 3", Link = "youtube_link", Duration = 183, Genre = "Pop", TrackNumber = 3 },
+                new Song { Id = 2, Title = "Song 2", Link = "youtube_link", Duration = 250, Genre = "Rap", TrackNumber = 2 },
+                new Song { Id = 3, Title = "Song 3", Link = "youtube_link", Duration = 343, Genre = "Pop", TrackNumber = 3 },
             };
 
             // Liste des artistes
@@ -112,9 +112,9 @@ namespace MusicalAlbum.ViewModel
                     Bio = "Biographie de Nekfeu...",
                     Albums = new List<Album>
                     {
-                        new Album { Id = 1, Title = "Feu", Cover = "cover3.jpg", Year = 2015, Genre = "Rap", Songs = songs },
-                        new Album { Id = 2, Title = "Cyborg", Cover = "cover3.jpg", Year = 2016, Genre = "Rap", Songs = songs },
-                        new Album { Id = 3, Title = "Etoile Vagabondes", Cover = "cover3.jpg", Year = 2019, Genre = "Rap", Songs = songs }
+                        new Album { Id = 1, Title = "Feu", Cover = "nekfeu_feu.jpg", Year = 2015, Genre = "Rap", Songs = songs },
+                        new Album { Id = 2, Title = "Cyborg", Cover = "nekfeu_cyborg.jpg", Year = 2016, Genre = "Rap", Songs = songs },
+                        new Album { Id = 3, Title = "Les Étoiles Vagabondes", Cover = "nekfeu_les_etoiles_vagabondes.jpg", Year = 2019, Genre = "Rap", Songs = songs }
                     }
                 }
             };

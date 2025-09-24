@@ -80,6 +80,7 @@ namespace MusicalAlbum.ViewModel
                 new Song { Id = 1, Title = "Song 1", Link = "youtube_link", Duration = 183, Genre = "Pop", TrackNumber = 1 },
                 new Song { Id = 2, Title = "Song 2", Link = "youtube_link", Duration = 250, Genre = "Rap", TrackNumber = 2 },
                 new Song { Id = 3, Title = "Song 3", Link = "youtube_link", Duration = 343, Genre = "Pop", TrackNumber = 3 },
+                new Song { Id = 4, Title = "On verra", Link = "https://youtu.be/lH_xQp1zTPw?si=T6ICfBz5Z2mJRgox", Duration = 205, Genre = "Rap", TrackNumber = 4 },
             };
 
             // Liste des artistes

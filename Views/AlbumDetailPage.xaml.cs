@@ -1,5 +1,6 @@
 using MusicalAlbum.Models;
 using MusicalAlbum.ViewModel;
+using System.Globalization;
 
 namespace MusicalAlbum.Views;
 
@@ -15,6 +16,20 @@ public partial class AlbumDetailPage : ContentPage
         BindingContext = new AlbumViewModel(Album);
     }
 
-    // Fonction de conversion du temps en secondes vers mm:ss
-
+    // Lance Youtube quand la tuile de chanson est cliquée
+    private async void OnSongTapped(object sender, TappedEventArgs e)
+    {
+        if ((sender as Grid)?.BindingContext is Song song && !string.IsNullOrEmpty(song.Link))
+        {
+            try
+            {
+                // Ouvre l'application YouTube ou le navigateur
+                await Launcher.OpenAsync(song.Link);
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Erreur", $"Impossible d'ouvrir YouTube : {ex.Message}", "OK");
+            }
+        }
+    }
 }

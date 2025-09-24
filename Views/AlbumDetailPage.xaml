@@ -3,27 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:MusicalAlbum.ViewModel"
              xmlns:models="clr-namespace:MusicalAlbum.Models"
+             xmlns:conv="clr-namespace:MusicalAlbum.Converters"
              x:Class="MusicalAlbum.Views.AlbumDetailPage"
              Title="AlbumDetailPage">
+    <ContentPage.Resources>
+        <conv:DurationToTimeConverter x:Key="DurationToTime" />
+    </ContentPage.Resources>
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="10">
             <!-- Cover -->
             <HorizontalStackLayout Padding="20" Spacing="10">
                 <Image Source="{Binding Album.Cover}"
-                   Aspect="AspectFit"
-                   HeightRequest="300"
-                   HorizontalOptions="Center"/>
+                       Aspect="AspectFit"
+                       HeightRequest="300"
+                       HorizontalOptions="Center"/>
 
                 <BoxView HeightRequest="1"
                          Color="LightGray"
-                         VerticalOptions="Fill" />
-                
+                         VerticalOptions="Fill"/>
+
                 <VerticalStackLayout Spacing="15"
-                                       VerticalOptions="Center">
+                                     VerticalOptions="Center">
                     <Label Text="{Binding Album.Title}"
                            FontSize="32"
                            FontAttributes="Bold"
-                           TextColor="White" 
+                           TextColor="White"
                            HorizontalOptions="Start"/>
                     <Label Text="{Binding Album.Year}"
                            FontSize="18"
@@ -31,63 +35,67 @@
                            TextColor="DimGray"/>
                 </VerticalStackLayout>
             </HorizontalStackLayout>
-            
 
+            <!-- Séparateur -->
             <BoxView HeightRequest="1"
                      Color="LightGray"
                      HorizontalOptions="Fill" />
 
+            <!-- Liste des chansons -->
             <CollectionView ItemsSource="{Binding Album.Songs}"
                             SelectionMode="None">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Song">
 
                         <Border Stroke="LightGray"
-                    StrokeThickness="1"
-                    StrokeShape="RoundRectangle 12"
-                    BackgroundColor="White"
-                    Padding="12"
-                    Margin="6">
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 12"
+                                BackgroundColor="White"
+                                Padding="12"
+                                Margin="6">
 
                             <Border.Shadow>
                                 <Shadow Brush="Black"
-                            Offset="2,2"
-                            Radius="6"
-                            Opacity="0.2"/>
+                                        Offset="2,2"
+                                        Radius="6"
+                                        Opacity="0.2"/>
                             </Border.Shadow>
 
                             <!-- Contenu de la carte chanson -->
                             <Grid ColumnDefinitions="36,*,Auto">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnSongTapped"/>
+                                </Grid.GestureRecognizers>
+
                                 <!-- Numéro de piste -->
                                 <Label Grid.Column="0"
-                           Text="{Binding TrackNumber}"
-                           FontAttributes="Bold"
-                           VerticalTextAlignment="Center"
-                           HorizontalTextAlignment="Center"
-                           TextColor="Black" />
+                                       Text="{Binding TrackNumber}"
+                                       FontAttributes="Bold"
+                                       VerticalTextAlignment="Center"
+                                       HorizontalTextAlignment="Center"
+                                       TextColor="Black"/>
 
                                 <!-- Titre de la chanson -->
                                 <Label Grid.Column="1"
-                           Text="{Binding Title}"
-                           VerticalTextAlignment="Center"
-                           LineBreakMode="TailTruncation"
-                           FontSize="16"
-                           TextColor="Black" />
+                                       Text="{Binding Title}"
+                                       VerticalTextAlignment="Center"
+                                       LineBreakMode="TailTruncation"
+                                       FontSize="16"
+                                       TextColor="Black"/>
 
                                 <!-- Durée -->
                                 <Label Grid.Column="2"
-                           Text="{Binding Duration}"
-                           VerticalTextAlignment="Center"
-                           FontSize="14"
-                           TextColor="DimGray" />
+                                       Text="{Binding Duration, Converter={StaticResource DurationToTime}}"
+                                       VerticalTextAlignment="Center"
+                                       FontSize="14"
+                                       TextColor="DimGray"/>
                             </Grid>
                         </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
 
-                <!-- Séparateur -->
                 <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="4" />
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="4"/>
                 </CollectionView.ItemsLayout>
             </CollectionView>
         </VerticalStackLayout>

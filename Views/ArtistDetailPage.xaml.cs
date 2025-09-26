@@ -6,6 +6,9 @@ namespace MusicalAlbum.Views;
 public partial class ArtistDetailPage : ContentPage
 {
     private Artist Artist;
+
+    private bool _isExpanded = false;
+
     public ArtistDetailPage(Artist artist)
     {
         InitializeComponent();
@@ -20,5 +23,20 @@ public partial class ArtistDetailPage : ContentPage
             // Navigation vers la page de détail album
             Navigation.PushAsync(new AlbumDetailPage(selectedAlbum, Artist));
         }
+    }
+
+    private void OnSeeMoreClicked(object sender, EventArgs e)
+    {
+        if (_isExpanded)
+        {
+            BioLabel.MaxLines = 3;
+            SeeMoreButton.Text = "Voir plus";
+        }
+        else
+        {
+            BioLabel.MaxLines = int.MaxValue;
+            SeeMoreButton.Text = "Voir moins";
+        }
+        _isExpanded = !_isExpanded;
     }
 }

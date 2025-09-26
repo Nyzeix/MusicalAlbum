@@ -5,8 +5,7 @@
              xmlns:vm="clr-namespace:MusicalAlbum.ViewModel"
              xmlns:models="clr-namespace:MusicalAlbum.Models"
              xmlns:conv="clr-namespace:MusicalAlbum.Converters"
-             x:DataType="vm:ArtistViewModel"
-             Title="Album Musical">
+             x:DataType="vm:ArtistViewModel">
 
     <ContentPage.Resources>
         <conv:StringToImageSourceConverter x:Key="ImageConverter" />

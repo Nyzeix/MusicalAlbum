@@ -4,8 +4,7 @@
              xmlns:vm="clr-namespace:MusicalAlbum.ViewModel"
              xmlns:models="clr-namespace:MusicalAlbum.Models"
              xmlns:conv="clr-namespace:MusicalAlbum.Converters"
-             x:Class="MusicalAlbum.Views.AlbumDetailPage"
-             Title="AlbumDetailPage">
+             x:Class="MusicalAlbum.Views.AlbumDetailPage">
     <ContentPage.Resources>
         <conv:DurationToTimeConverter x:Key="DurationToTime" />
         <conv:StringToImageSourceConverter x:Key="ImageConverter" />

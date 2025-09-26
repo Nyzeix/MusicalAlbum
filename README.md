@@ -1,14 +1,14 @@
 # MusicalAlbum
 
-Application C# basique d'entrainement, qui permet d'afficher une liste d'artistes, d'albums associés et de morceaux.  
+Application C# basique d'entrainement, qui permet d'afficher une liste d'artistes, d'albums associÃ©s et de morceaux.  
 
 # Notes:
-Les chansons sont cliquables et ouvrent une page web avec la vidéo YouTube associée.  
-Certaines chansons n'ont pas de vidéo associée, donc rien ne se passe en cliquant dessus.  
-Seul les chansons des albums suivantes sont cliquables:  
+Les chansons sont cliquables et ouvrent une page web avec la vidÃ©o YouTube associÃ©e.  
+Certaines chansons n'ont pas de vidÃ©o associÃ©e, donc rien ne se passe en cliquant dessus.  
+Seul les chansons des albums suivantes dispose d'un lien associÃ©:  
 - Nekfeu - Feu
 - Nekfeu - Cyborg
 
 
 # TODO:  
-Ajout de la base de données et passer les données de la base au viewModel.  
+Ajout de la base de donnÃ©es et passer les donnÃ©es de la base au viewModel.  

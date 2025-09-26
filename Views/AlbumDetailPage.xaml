@@ -8,12 +8,13 @@
              Title="AlbumDetailPage">
     <ContentPage.Resources>
         <conv:DurationToTimeConverter x:Key="DurationToTime" />
+        <conv:StringToImageSourceConverter x:Key="ImageConverter" />
     </ContentPage.Resources>
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="10">
             <!-- Cover -->
             <HorizontalStackLayout Padding="20" Spacing="10">
-                <Image Source="{Binding Album.Cover}"
+                <Image Source="{Binding Album.Cover, Converter={StaticResource ImageConverter}}"
                        Aspect="AspectFit"
                        HeightRequest="300"
                        HorizontalOptions="Center"/>
@@ -29,6 +30,10 @@
                            FontAttributes="Bold"
                            TextColor="White"
                            HorizontalOptions="Start"/>
+                    <Label Text="{Binding Album.Genre}"
+                           FontSize="18"
+                           FontAttributes="Italic"
+                           TextColor="DimGray"/>
                     <Label Text="{Binding Album.Year}"
                            FontSize="18"
                            FontAttributes="Italic"

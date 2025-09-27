@@ -351,11 +351,12 @@ namespace MusicalAlbum.ViewModel
                 filtered = filtered.Where(artist => artist.Genre == SelectedGenre);
 
             // Filtre par année
-            /*if (!string.IsNullOrWhiteSpace(SelectedYear) && SelectedYear != "All")
+            if (!string.IsNullOrWhiteSpace(SelectedYear) && SelectedYear != "All")
             {
-                // TODO (Année d'album ? d'artiste ?)
-                filtered = filtered;
-            }*/
+                // Filtre par année de sortie des albums
+                int year = int.Parse(SelectedYear);
+                filtered = filtered.Where(artist => artist.Albums.Any(album => album.Year == year));
+            }
 
             // Mettre à jour la collection observable
             Artists.Clear();

@@ -6,6 +6,7 @@ namespace MusicalAlbum.Converters
 {
     public class StringToImageSourceConverter : IValueConverter
     {
+        // Converts string object to ImageSource
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is string path && !string.IsNullOrEmpty(path))

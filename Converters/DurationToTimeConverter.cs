@@ -6,6 +6,7 @@ namespace MusicalAlbum.Converters
 {
     public class DurationToTimeConverter : IValueConverter
     {
+        // Converts duration in seconds (int) to a formatted string "mm:ss"
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is int seconds && seconds >= 0)

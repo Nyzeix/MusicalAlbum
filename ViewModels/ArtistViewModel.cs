@@ -11,12 +11,12 @@ namespace MusicalAlbum.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        // Variables de filtre
+        // Variables de filtres
         private string searchText;
         private string selectedGenre = "All";
         private string selectedYear = "All";
 
-        // Variable "Artist" utilisé pour le view
+        // Variable "Artists" utilisé pour le view
         public ObservableCollection<Artist> Artists { get; set; } = new();
         public List<Artist> AllArtists { get; set; } = new();  // Tout les artistes
         public List<string> YearList { get; set; } = new(); // Liste des années pour le filtre
@@ -74,6 +74,81 @@ namespace MusicalAlbum.ViewModel
 
         public ArtistViewModel()
         {
+            // Chargement des données d'essais, sans passer par une BDD
+            LoadTemplateData();
+            
+            // Liste des genres
+            GenreList = new List<string>
+            {
+                "All",
+                "Rap",
+                "Rock",
+                "Pop",
+                "Jazz",
+                "Classical",
+                "Hip-Hop",
+                "Country",
+                "Electronic",
+                "Reggae",
+                "Blues",
+                "Metal",
+                "Folk",
+                "Punk",
+                "Soul",
+                "RB",
+                "Indie",
+                "Alternative",
+                "Disco",
+                "Funk",
+                "Ska",
+            };
+            GenreList.Sort();
+            
+            // Liste des années
+            YearList.Add("All"); // Réinitialise le filtre
+            for (int i = 1950; i <= DateTime.Today.Year; i++)
+            {
+                YearList.Add(i.ToString());
+            }
+            ApplyFilters();
+
+        }
+
+        private void ApplyFilters()
+        {
+            var filtered = AllArtists.AsEnumerable();
+
+            // Filtre par recherche
+            if (!string.IsNullOrWhiteSpace(SearchText))
+                filtered = filtered.Where(artist => artist.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
+
+            // Filtre par genre
+            if (!string.IsNullOrWhiteSpace(SelectedGenre) && SelectedGenre != "All")
+                filtered = filtered.Where(artist => artist.Genre == SelectedGenre);
+
+            // Filtre par année
+            if (!string.IsNullOrWhiteSpace(SelectedYear) && SelectedYear != "All")
+            {
+                // Filtre par année de sortie des albums
+                int year = int.Parse(SelectedYear);
+                filtered = filtered.Where(artist => artist.Albums.Any(album => album.Year == year));
+            }
+
+            // Mettre à jour la collection observable
+            Artists.Clear();
+            foreach (var artist in filtered)
+                Artists.Add(artist);
+        }
+
+        // Appelle la vue si une propriété évolue
+        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void LoadTemplateData()
+        {
+            // Méthode pour charger des données de test ou initiales si nécessaire
             // Sample songs for demonstration
             List<Song> songs = new List<Song>
             {
@@ -300,74 +375,6 @@ namespace MusicalAlbum.ViewModel
                     }
                 }
             };
-
-            // Liste des genres
-            GenreList = new List<string>
-            {
-                "All",
-                "Rap",
-                "Rock",
-                "Pop",
-                "Jazz",
-                "Classical",
-                "Hip-Hop",
-                "Country",
-                "Electronic",
-                "Reggae",
-                "Blues",
-                "Metal",
-                "Folk",
-                "Punk",
-                "Soul",
-                "RB",
-                "Indie",
-                "Alternative",
-                "Disco",
-                "Funk",
-                "Ska",
-            };
-            GenreList.Sort();
-            
-            // Liste des années
-            YearList.Add("All"); // Réinitialise le filtre
-            for (int i = 1950; i <= DateTime.Today.Year; i++)
-            {
-                YearList.Add(i.ToString());
-            }
-            ApplyFilters();
-
-        }
-
-        private void ApplyFilters()
-        {
-            var filtered = AllArtists.AsEnumerable();
-
-            // Filtre par recherche
-            if (!string.IsNullOrWhiteSpace(SearchText))
-                filtered = filtered.Where(artist => artist.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
-
-            // Filtre par genre
-            if (!string.IsNullOrWhiteSpace(SelectedGenre) && SelectedGenre != "All")
-                filtered = filtered.Where(artist => artist.Genre == SelectedGenre);
-
-            // Filtre par année
-            if (!string.IsNullOrWhiteSpace(SelectedYear) && SelectedYear != "All")
-            {
-                // Filtre par année de sortie des albums
-                int year = int.Parse(SelectedYear);
-                filtered = filtered.Where(artist => artist.Albums.Any(album => album.Year == year));
-            }
-
-            // Mettre à jour la collection observable
-            Artists.Clear();
-            foreach (var artist in filtered)
-                Artists.Add(artist);
-        }
-
-        // Appelle la vue si une propriété évolue
-        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
